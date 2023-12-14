@@ -1,4 +1,7 @@
+import { fineTunePrompt, negative_prompt, lora_scale } from "@/model_inputs";
+
 export default async function handler(req, res) {
+  const fine_tuned_prompt = fineTunePrompt(req.body.prompt);
   const response = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {
@@ -11,8 +14,7 @@ export default async function handler(req, res) {
       version:
         "bdec9eb8a2c53892e0b2476e7c2a29f0977f7aa823c58b6bc2148c2fc4adde67",
 
-      // This is the text prompt that will be submitted by a form on the frontend
-      input: { prompt: req.body.prompt },
+      input: { prompt: fine_tuned_prompt, negative_prompt, lora_scale },
     }),
   });
 
