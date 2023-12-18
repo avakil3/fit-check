@@ -57,7 +57,7 @@ function PromptInput() {
         setError(prediction.detail);
         return;
       }
-      console.log({ prediction });
+      // console.log({ prediction });
     }
 
     const uploadToAzureResponse = await uploadToAzure({

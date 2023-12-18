@@ -11,14 +11,14 @@ function Header() {
 
       {/* Right */}
       <div className="flex sm:flex-row text-s h-full xs:text-base  divide-x items-center text-gray-500">
-        <Link
-          href=""
-          target="_blank"
-          className="p-2 md:px-2 font-light md:text-right"
-        >
+        <Link href="/about" className="p-2 md:px-2 font-light md:text-right">
           About
         </Link>
-        <Link href="" target="_blank" className="p-2 md:px-2 font-light">
+        <Link
+          href="https://github.com/avakil3/fit-check/tree/main"
+          target="_blank"
+          className="p-2 md:px-2 font-light"
+        >
           GitHub Repo
         </Link>
       </div>

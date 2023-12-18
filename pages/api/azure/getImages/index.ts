@@ -1,6 +1,10 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "GET") {
     return res.status(405).end();
   }
@@ -21,9 +25,12 @@ export default async function handler(req, res) {
     }
 
     const sortedImgUrls = imageUrls.sort((a, b) => {
-      const aName = a.name.split("_").pop()?.toString().split(".").shift();
-      const bName = b.name.split("_").pop()?.toString().split(".").shift();
-      return bName - aName;
+      const aName =
+        a.name.split("_").pop()?.toString().split(".").shift() || "";
+      const bName =
+        b.name.split("_").pop()?.toString().split(".").shift() || "";
+
+      return parseInt(bName) - parseInt(aName);
     });
 
     res.statusCode = 201;

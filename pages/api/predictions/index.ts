@@ -6,13 +6,17 @@ import {
   high_noise_frac,
 } from "@/model_inputs";
 
+import type { NextApiRequest, NextApiResponse } from "next";
 import Replicate from "replicate";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   // fine tune the user's given prompt with additional text for better AI image generation
   const fine_tuned_prompt = fineTunePrompt(req.body.prompt);
 

@@ -2,7 +2,13 @@ import React from "react";
 import Image from "next/image";
 import deleteImage from "@/lib/deleteImage";
 
-function Modal({ imgUrl, setClickedImg, refreshImages }) {
+type Props = {
+  imgUrl: string;
+  setClickedImg: React.Dispatch<React.SetStateAction<string | null>>;
+  refreshImages: () => {};
+};
+
+function Modal({ imgUrl, setClickedImg, refreshImages }: Props) {
   const closeModal = () => {
     setClickedImg(null);
   };

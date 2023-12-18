@@ -1,6 +1,10 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "DELETE") {
     return res.status(405).end();
   }
