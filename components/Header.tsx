@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className="flex justify-between items-center sticky top-0 bg-slate-50 z-50 shadow-md p-5">
       {/* Left */}
-      <Image src={Logo} alt="Logo" height={50} width={50} />
+      <Image src={Logo} alt="Logo" height={60} width={60} />
 
       {/* Right */}
       <div className="flex sm:flex-row text-s h-full xs:text-base  divide-x items-center text-gray-500">

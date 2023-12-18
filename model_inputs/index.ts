@@ -11,3 +11,7 @@ export const negative_prompt: string =
     dead eyes, poorly rendered hands, deformed hands, deformed fingers, too long fingers";
 
 export const lora_scale: number = 0.7;
+
+export const refine: string = "expert_ensemble_refiner";
+
+export const high_noise_frac: number = 0.9;

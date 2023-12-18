@@ -1,31 +1,49 @@
-import { fineTunePrompt, negative_prompt, lora_scale } from "@/model_inputs";
+import {
+  fineTunePrompt,
+  negative_prompt,
+  lora_scale,
+  refine,
+  high_noise_frac,
+} from "@/model_inputs";
+
+import Replicate from "replicate";
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
 
 export default async function handler(req, res) {
+  // fine tune the user's given prompt with additional text for better AI image generation
   const fine_tuned_prompt = fineTunePrompt(req.body.prompt);
-  const response = await fetch("https://api.replicate.com/v1/predictions", {
-    method: "POST",
-    headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      // Pinned to a specific version of Stable Diffusion
-      // See https://replicate.com/stability-ai/sdxl
-      version:
-        "bdec9eb8a2c53892e0b2476e7c2a29f0977f7aa823c58b6bc2148c2fc4adde67",
 
-      input: { prompt: fine_tuned_prompt, negative_prompt, lora_scale },
-    }),
-  });
+  let prediction = await replicate.deployments.predictions.create(
+    "avakil3",
+    "fit-check",
+    {
+      input: {
+        prompt: fine_tuned_prompt,
+        negative_prompt,
+        lora_scale,
+        refine,
+        high_noise_frac,
+      },
+    }
+  );
 
-  if (response.status !== 201) {
-    let error = await response.json();
+  if (prediction.error) {
     res.statusCode = 500;
-    res.end(JSON.stringify({ detail: error.detail }));
+    res.end(JSON.stringify({ detail: prediction.error }));
     return;
   }
 
-  const prediction = await response.json();
+  prediction = await replicate.wait(prediction);
+
+  if (prediction.error) {
+    res.statusCode = 500;
+    res.end(JSON.stringify({ detail: prediction.error }));
+    return;
+  }
+  // success
   res.statusCode = 201;
   res.end(JSON.stringify(prediction));
 }

@@ -5,7 +5,7 @@ import uploadToAzure from "@/lib/uploadToAzure";
 import getImages from "@/lib/getImages";
 import toast from "react-hot-toast";
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 function PromptInput() {
   const [input, setInput] = useState("");

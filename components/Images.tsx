@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 import getImages from "@/lib/getImages";
+import Modal from "./Modal";
 
 type ImageType = {
   name: string;
@@ -18,6 +19,12 @@ function Images() {
   } = useSWR("/api/azure/getImages", getImages, {
     revalidateOnFocus: false,
   });
+
+  const [clickedImg, setClickedImg] = useState<string | null>(null);
+
+  const handleClick = (imgUrl: string) => {
+    setClickedImg(imgUrl);
+  };
 
   return (
     <div>
@@ -46,6 +53,7 @@ function Images() {
                 hover:scale-[103%] transition-transform duration-200
                 ease-in-out
                 `}
+            onClick={() => handleClick(image.url)}
           >
             {/* creates a white div that displays prompt text when use hovers over image */}
             <div
@@ -61,13 +69,20 @@ function Images() {
             <Image
               src={image.url}
               alt={image.name}
-              height={800}
-              width={800}
+              height={1024}
+              width={1024}
               className="w-full rounded-sm shadow-2xl drop-shadow-lg -z-10"
             />
           </div>
         ))}
       </div>
+      {clickedImg && (
+        <Modal
+          imgUrl={clickedImg}
+          setClickedImg={setClickedImg}
+          refreshImages={refreshImages}
+        />
+      )}
     </div>
   );
 }
