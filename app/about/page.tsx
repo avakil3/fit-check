@@ -71,7 +71,7 @@ export default function Home() {
       </p>
       <br />
 
-      <h3 className="text-xl pb-5">Learning Rates</h3>
+      <h3 className="text-xl pb-5">Learning Rate</h3>
       <p>
         The learning rate controls how much the model’s weights are updated in
         response to the prediction errors. A higher learning rate means larger
