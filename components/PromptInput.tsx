@@ -72,7 +72,10 @@ function PromptInput() {
       return;
     }
 
-    toast.success("Your AI outfit has been generated!", { id: notification });
+    toast.success("Your AI outfit has been generated!", {
+      id: notification,
+      position: "top-center",
+    });
     setSubmitBtnDisabled(false);
     refreshImages();
   };
