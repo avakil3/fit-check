@@ -13,18 +13,19 @@ export default function Home() {
         />
         <div>
           <p>
-            Fit Check AI is a men's outfit AI generator tool. The project uses a
-            fine-tuned version of the open source Stable Diffusion XL base model
-            and has been trained on hundreds of curated menswear outfits. The
-            training data consisted of outfit pics from various men's style
-            influencers, eaching showcasing modern style trends and fits.
+            Fit Check AI is a men&apos;s outfit AI generator tool. The project
+            uses a fine-tuned version of the open source Stable Diffusion XL
+            base model and has been trained on hundreds of curated menswear
+            outfits. The training data consisted of outfit pics from various
+            men&apos;s style influencers, eaching showcasing modern style trends
+            and fits.
           </p>
           <br />
           <p>
             Users enter a prompt that directs the AI towards a particular style
             or outfit type. Additional prompting text is then added to the
-            user's input in the background to ultimately achieve the desired
-            fashion photography look.
+            user&apos;s input in the background to ultimately achieve the
+            desired fashion photography look.
           </p>
         </div>
       </div>
@@ -113,16 +114,16 @@ export default function Home() {
       <br />
       <p>
         Prior to sending the prompt to Replicate for image generation, the
-        user's input is edited to include some additional prompting language to
-        achieve the desired style. This includes key terms such as "fashion
-        photograph", "full body", and "oversized fit". The keyword "TOK"
-        represents a unique string that is used to refer to the concept in the
-        input training images. It directs the model towards the outfit images I
-        provided.
+        user&apos;s input is edited to include some additional prompting
+        language to achieve the desired style. This includes key terms such as
+        &quot;fashion photograph&quot;, &quot;full body&quot;, and
+        &quot;oversized fit&quot;. The keyword &quot;TOK&quot; represents a
+        unique string that is used to refer to the concept in the input training
+        images. It directs the model towards the outfit images I provided.
       </p>
       <br />
       <p>
-        The negative prompt helps signal what you don't want to see in the
+        The negative prompt helps signal what you don&apos;t want to see in the
         generated images. When specified, it guides the generation process not
         to include things in the image according to the given text. Prompting
         generally requires a lot of trial and error to see what works.
@@ -137,9 +138,9 @@ export default function Home() {
         training. This worked fairly well for the most part, but was not fully
         accurate. Common misslabeling included detecting multiple people when
         the image only had one person, detecting a woman when the images were
-        only of men, and occasional wildcards like "pregnant man with a white
-        hoodie and black pants". Manual, human-based captioning would likely
-        produce better results but would require time investment.
+        only of men, and occasional wildcards like &quot;pregnant man with a
+        white hoodie and black pants&quot;. Manual, human-based captioning would
+        likely produce better results but would require time investment.
       </p>
       <br />
       <h3 className="text-xl pb-5">
@@ -151,7 +152,7 @@ export default function Home() {
         image, the model merged all these men together, creating some
         irregularities to the body. This issue can be prevented by using
         training images from a single fashion influencer. However, this would
-        limit the model's creativity as a single influencer usually has a
+        limit the model&apos;s creativity as a single influencer usually has a
         distinct style.
       </p>
       <br />
@@ -168,8 +169,8 @@ export default function Home() {
         LoRA Models are Generally Better for Styles and Bad for Faces
       </h3>
       <p>
-        Based on Replicate's experimentation, LoRA seems to do a better job at
-        detecting styles than DreamBooth, but faces aren’t as good. They are
+        Based on Replicate&apos;s experimentation, LoRA seems to do a better job
+        at detecting styles than DreamBooth, but faces aren’t as good. They are
         stuck in an uncanny valley, rather than looking precisely like the
         person. I ran into this issue as well, partly due to the challenge of
         using multiple influencers. The refiner model and the negative prompts
