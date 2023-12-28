@@ -1,9 +1,13 @@
 import Images from "@/components/Images";
+import PromptInput from "@/components/PromptInput";
 
 export default function Home() {
   return (
-    <main className="mx-0">
-      <Images />
-    </main>
+    <>
+      <PromptInput />
+      <main className="mx-0">
+        <Images />
+      </main>
+    </>
   );
 }

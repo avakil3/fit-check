@@ -23,9 +23,8 @@ function PromptInput() {
     setError(null);
 
     // Show loading notification / toast message
-    const notificationText = input.slice(0, 50);
     const notification = toast.loading(
-      `Fit Check AI is creating: ${notificationText}...`
+      `Fit Check AI is creating your outfit... This will take about one minute.`
     );
 
     const response = await fetch("/api/predictions", {

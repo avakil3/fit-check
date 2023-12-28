@@ -5,7 +5,7 @@ import useSWR from "swr";
 import getImages from "@/lib/getImages";
 import Modal from "./Modal";
 
-type ImageType = {
+export type ImageType = {
   name: string;
   url: string;
 };
@@ -20,10 +20,10 @@ function Images() {
     revalidateOnFocus: false,
   });
 
-  const [clickedImg, setClickedImg] = useState<string | null>(null);
+  const [clickedImg, setClickedImg] = useState<ImageType | null>(null);
 
-  const handleClick = (imgUrl: string) => {
-    setClickedImg(imgUrl);
+  const handleClick = (image: ImageType) => {
+    setClickedImg(image);
   };
 
   return (
@@ -53,7 +53,7 @@ function Images() {
                 hover:scale-[103%] transition-transform duration-200
                 ease-in-out
                 `}
-            onClick={() => handleClick(image.url)}
+            onClick={() => handleClick(image)}
           >
             {/* creates a white div that displays prompt text when use hovers over image */}
             <div
@@ -78,9 +78,15 @@ function Images() {
       </div>
       {clickedImg && (
         <Modal
-          imgUrl={clickedImg}
+          imgUrl={clickedImg.url}
           setClickedImg={setClickedImg}
           refreshImages={refreshImages}
+          prompt={clickedImg.name
+            .split("_")
+            .shift()
+            ?.toString()
+            .split(".")
+            .shift()}
         />
       )}
     </div>

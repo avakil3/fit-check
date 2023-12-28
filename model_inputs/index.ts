@@ -1,5 +1,7 @@
-export const fineTunePrompt = (str: string) =>
-  "A full body photo of TOK, " + str + ", fashion photography, oversized fit";
+export const fineTunePrompt = (user_input: string) =>
+  "A full body photo of TOK, " +
+  user_input +
+  ", fashion photography, oversized fit";
 
 export const negative_prompt: string =
   "((((ugly)))), (((duplicate))), ((morbid)), ((mutilated)), [out of frame], extra fingers, \
